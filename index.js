@@ -6,7 +6,8 @@ const port = 3000
 
 app.use(express.json())
 
-let users = []
+let users = [
+]
 
 function init() {
     for (let i = 0; i<15; i++) {
@@ -19,6 +20,10 @@ function init() {
         })
     }
 }
+
+app.get('/', (req, res) => {
+    res.send('Node JS api')
+})
 
 app.get('/users', (req, res) => {
     res.send(users)
@@ -59,10 +64,6 @@ app.post('/users', (req, res) => {
     console.log(`usuario ${JSON.stringify(user)}`)
     users.push(user)
     res.sendStatus(201)
-})
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
 })
 
 app.listen(port, () => {
